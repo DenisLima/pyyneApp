@@ -1,0 +1,9 @@
+ext {
+    APPLICATION_ID = 'com.djv.pyyneaplication'
+
+    app = [
+            minSdkVersion    : 23,
+            targetSdkVersion : 31,
+            compileSdkVersion: 31
+    ]
+}

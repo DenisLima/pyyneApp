@@ -1,0 +1,24 @@
+def android_core = '1.7.0'
+def appcompat = '1.4.1'
+def material = '1.5.0'
+def constraint = '2.1.3'
+def navigationFragment = '2.4.0'
+def navigationUi = '2.4.0'
+def junit = '4.13.2'
+def extUnit = '1.1.3'
+def espresso = '3.4.0'
+
+ext.generalDeps = [
+        androidCore        : "androidx.core:core-ktx:$android_core",
+        appCompat          : "androidx.appcompat:appcompat:$appcompat",
+        material           : "com.google.android.material:material:$material",
+        constraint         : "androidx.constraintlayout:constraintlayout:$constraint",
+        navigationFragment : "androidx.navigation:navigation-fragment-ktx:$navigationFragment",
+        navigationUi       : "androidx.navigation:navigation-ui-ktx:$navigationUi"
+]
+
+ext.testDeps = [
+        junit       : "junit:junit:$junit",
+        extUnit     : "androidx.test.ext:junit:$extUnit",
+        espresso    : "androidx.test.espresso:espresso-core:$espresso"
+]

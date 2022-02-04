@@ -1,0 +1,52 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+apply from: '../buildsystem/information.gradle'
+apply from: '../buildsystem/version.gradle'
+
+android {
+    compileSdk app.compileSdkVersion
+
+    defaultConfig {
+        applicationId APPLICATION_ID
+        minSdk app.minSdkVersion
+        targetSdk app.targetSdkVersion
+        versionCode appVersionCode
+        versionName appVersionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    implementation generalDeps.androidCore
+    implementation generalDeps.appCompat
+    implementation generalDeps.material
+    implementation generalDeps.constraint
+    implementation generalDeps.navigationFragment
+    implementation generalDeps.navigationUi
+
+    testImplementation testDeps.junit
+    androidTestImplementation testDeps.extUnit
+    androidTestImplementation testDeps.espresso
+}
