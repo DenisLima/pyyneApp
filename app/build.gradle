@@ -39,6 +39,8 @@ android {
 
 dependencies {
 
+    implementation project(':presentation')
+
     implementation generalDeps.androidCore
     implementation generalDeps.appCompat
     implementation generalDeps.material
