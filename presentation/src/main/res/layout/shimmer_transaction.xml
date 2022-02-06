@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/iconShimmer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="@dimen/space_32"
+            android:layout_height="@dimen/space_32"
+            android:background="@color/gray" />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/balanceShimmer"
+        android:layout_width="100dp"
+        android:layout_height="@dimen/space_50"
+        android:layout_marginTop="@dimen/space_32"
+        app:layout_constraintEnd_toStartOf="@id/currencyShimmer"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iconShimmer">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray" />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/currencyShimmer"
+        android:layout_width="60dp"
+        android:layout_height="@dimen/space_32"
+        android:layout_marginStart="@dimen/space_16"
+        app:layout_constraintBottom_toBottomOf="@+id/balanceShimmer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/balanceShimmer"
+        app:layout_constraintTop_toTopOf="@+id/balanceShimmer" >
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray" />
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/rootList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_48"
+        app:layout_constraintTop_toBottomOf="@id/balanceShimmer"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/shimmer_item_list"/>
+
+        <include
+            layout="@layout/shimmer_item_list"/>
+
+        <include
+            layout="@layout/shimmer_item_list"/>
+
+        <include
+            layout="@layout/shimmer_item_list"/>
+
+        <include
+            layout="@layout/shimmer_item_list"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
