@@ -36,10 +36,21 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation project(':domain')
+
+    implementation generalDeps.androidCore
+    implementation generalDeps.appCompat
+    implementation generalDeps.material
+    implementation generalDeps.koin
+    implementation generalDeps.koinScope
+    implementation generalDeps.koinViewModel
+    implementation generalDeps.koinFragment
+    implementation generalDeps.lifecyle
+
+    testImplementation testDeps.junit
+    androidTestImplementation testDeps.extUnit
+    androidTestImplementation testDeps.espresso
+    testImplementation testDeps.mockk
+    testImplementation testDeps.coreTest
+    testImplementation testDeps.testCorou
 }
