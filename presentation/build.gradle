@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'androidx.navigation.safeargs'
 }
 
 apply from: '../buildsystem/information.gradle'
@@ -39,12 +40,25 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.4.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation project(':domain')
+
+    implementation generalDeps.androidCore
+    implementation generalDeps.appCompat
+    implementation generalDeps.material
+    implementation generalDeps.constraint
+    implementation generalDeps.navigationFragment
+    implementation generalDeps.navigationUi
+    implementation generalDeps.koin
+    implementation generalDeps.koinScope
+    implementation generalDeps.koinViewModel
+    implementation generalDeps.koinFragment
+    implementation generalDeps.lifecyle
+    implementation generalDeps.shimmer
+
+    testImplementation testDeps.junit
+    androidTestImplementation testDeps.extUnit
+    androidTestImplementation testDeps.espresso
+    testImplementation testDeps.mockk
+    testImplementation testDeps.coreTest
+    testImplementation testDeps.testCorou
 }

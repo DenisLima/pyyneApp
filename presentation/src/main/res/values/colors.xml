@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#FFFFFF</color>
-    <color name="colorPrimary">#ebeccd</color>
+    <color name="colorPrimary">#DBE6D3</color>
     <color name="colorPrimaryDark">#99d5ff</color>
     <color name="colorAccent">#ffffff</color>
+    <color name="ligth_green">#F4FAEF</color>
+    <color name="gray">#C1C1C1</color>
+    <color name="spring_green">#6B8E23</color>
+    <color name="fire_brick">#B22222</color>
 </resources>

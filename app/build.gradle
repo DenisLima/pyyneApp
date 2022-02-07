@@ -39,6 +39,8 @@ android {
 
 dependencies {
 
+    implementation project(':data')
+    implementation project(':domain')
     implementation project(':presentation')
 
     implementation generalDeps.androidCore
@@ -47,8 +49,16 @@ dependencies {
     implementation generalDeps.constraint
     implementation generalDeps.navigationFragment
     implementation generalDeps.navigationUi
+    implementation generalDeps.koin
+    implementation generalDeps.koinScope
+    implementation generalDeps.koinViewModel
+    implementation generalDeps.koinFragment
+    implementation generalDeps.lifecyle
 
     testImplementation testDeps.junit
     androidTestImplementation testDeps.extUnit
     androidTestImplementation testDeps.espresso
+    testImplementation testDeps.mockk
+    testImplementation testDeps.coreTest
+    testImplementation testDeps.testCorou
 }
