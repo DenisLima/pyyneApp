@@ -50,4 +50,7 @@ dependencies {
     testImplementation testDeps.junit
     androidTestImplementation testDeps.extUnit
     androidTestImplementation testDeps.espresso
+    testImplementation testDeps.mockk
+    testImplementation testDeps.coreTest
+    testImplementation testDeps.testCorou
 }

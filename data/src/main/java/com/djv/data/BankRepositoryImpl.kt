@@ -2,8 +2,10 @@ package com.djv.data
 
 import com.djv.data.bank1.Bank1AccountSource
 import com.djv.data.bank2.Bank2AccountSource
-import com.djv.domain.bank1.BankRepository
+import com.djv.domain.bank.BankRepository
 import com.djv.domain.model.Transaction
+import com.djv.domain.model.UserInfo
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.util.*
@@ -11,48 +13,28 @@ import java.util.*
 class BankRepositoryImpl(
     private val bank1AccountSource: Bank1AccountSource,
     private val bank2AccountSource: Bank2AccountSource
-): BankRepository {
+) : BankRepository {
 
-    override suspend fun getRepositoryBalance(accountId: Long, bankId: Int): Flow<Double> {
-        return flow {
-            if (bankId == 1) {
-                val balance = bank1AccountSource.getAccountBalance(accountId)
-                this.emit(balance)
-            } else {
-                val balance = bank2AccountSource.getBalance(accountId).balance
-                this.emit(balance)
-            }
-        }
-    }
-
-    override suspend fun getCurrencyBalance(accountId: Long, bankId: Int): Flow<String> {
-        return flow {
-            if (bankId == 1) {
-                val currency = bank1AccountSource.getAccountCurrency(accountId)
-                this.emit(currency)
-            } else {
-                val currency = bank2AccountSource.getBalance(accountId).currency
-                this.emit(currency)
-            }
-        }
-    }
-
-    override suspend fun getTransactions(
+    override suspend fun getUserInfo(
         accountId: Long,
         dateFrom: Date,
         dateTo: Date,
         bankId: Int
-    ): Flow<List<Transaction>> {
+    ): Flow<UserInfo> {
         return flow {
+            delay(3000)
             if (bankId == 1) {
+                val userBalance = bank1AccountSource.getAccountBalance(accountId)
+                val userCurrency = bank1AccountSource.getAccountCurrency(accountId)
+
                 val transactions = bank1AccountSource.getTransactions(
                     accountId,
                     dateFrom,
                     dateTo
                 )
-                val finalList = mutableListOf<Transaction>()
+                val transactionsMapped = mutableListOf<Transaction>()
                 transactions.map {
-                    finalList.add(
+                    transactionsMapped.add(
                         Transaction(
                             description = it.text,
                             type = it.type,
@@ -60,16 +42,25 @@ class BankRepositoryImpl(
                         )
                     )
                 }
-                this.emit(finalList)
+                this.emit(
+                    UserInfo(
+                        balance = userBalance,
+                        currency = userCurrency,
+                        transactions = transactionsMapped
+                    )
+                )
             } else {
+                val userBalance = bank2AccountSource.getBalance(accountId).balance
+                val userCurrency = bank2AccountSource.getBalance(accountId).currency
+
                 val transactions = bank2AccountSource.getTransactions(
                     accountId,
                     dateFrom,
                     dateTo
                 )
-                val finalList = mutableListOf<Transaction>()
+                val transactionsMapped = mutableListOf<Transaction>()
                 transactions.map {
-                    finalList.add(
+                    transactionsMapped.add(
                         Transaction(
                             description = it.text,
                             type = it.type.ordinal,
@@ -77,7 +68,13 @@ class BankRepositoryImpl(
                         )
                     )
                 }
-                this.emit(finalList)
+                this.emit(
+                    UserInfo(
+                        balance = userBalance,
+                        currency = userCurrency,
+                        transactions = transactionsMapped
+                    )
+                )
             }
         }
     }

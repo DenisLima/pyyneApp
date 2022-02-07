@@ -1,4 +1,4 @@
-package com.djv.presentation.transactions
+package com.djv.domain.bank
 
 import java.util.*
 
